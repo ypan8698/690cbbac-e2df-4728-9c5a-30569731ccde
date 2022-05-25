@@ -1,4 +1,4 @@
-const ProgressReport = require('../../src/components/progress-report')
+const ProgressReport = require('../../src/components/progress-report');
 
 describe("ProgressReport", () => {
     const progressReport = new ProgressReport();

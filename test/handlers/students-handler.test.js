@@ -1,4 +1,4 @@
-const StudentsHandler = require('../../src/handlers/students-handler')
+const StudentsHandler = require("../../src/handlers/students-handler")
 
 describe("StudentsHandler", () => {
     const studentsHandler = new StudentsHandler();
@@ -9,11 +9,12 @@ describe("StudentsHandler", () => {
 
     describe("_validateID", () => {
         test("invalid id return false _validateID", () => {
-            expect(() => studentsHandler._validateId("student4")).not.toBeTruthy()
+            const result = studentsHandler._validateId("student4")
+            expect(result).not.toBeTruthy()
         })
 
         test("valid id return true _validateID", () => {
-            expect(() => studentsHandler._validateId("student3")).toBeTruthy()
+            expect(studentsHandler._validateId("student3")).toBeTruthy()
         })
 
         test("_validateId is a function", () => {
@@ -23,15 +24,17 @@ describe("StudentsHandler", () => {
 
     describe("_getStudentNameById", () => {
         test("_getStudentNameById is a function", () => {
-            expect(typeof studentsHandler._getStudentNameById ).toBe("function");
+            expect(typeof studentsHandler._getStudentNameById).toBe("function");
         })
 
         test("invalid id return empty string", () => {
-            expect(() => studentsHandler._getStudentNameById("student4")).toBe('')
+            const result = studentsHandler._getStudentNameById("student4")
+            expect(result).toBe('')
         })
 
         test("valid id return student name", () => {
-            expect(() => studentsHandler._validateId("student3")).toBe('Peter Parker')
+            const result = studentsHandler._getStudentNameById("student3")
+            expect(result).toBe('Peter Parker')
         })
     })
     
@@ -41,19 +44,19 @@ describe("StudentsHandler", () => {
         })
 
         test("long studentID reutrn false", () => {
-            expect(() => studentsHandler.handleStudentId('student3student3student3student3') ).not.toBeTruthy();
+            expect(studentsHandler.handleStudentId('student3student3student3student3') ).not.toBeTruthy();
         })
 
         test("valid studentID reutrn true", () => {
-            expect(() => studentsHandler.handleStudentId('student3') ).toBeTruthy();
+            expect(studentsHandler.handleStudentId('student3') ).toBeTruthy();
         })
 
         test("null studentID reutrn false", () => {
-            expect(() => studentsHandler.handleStudentId(null)).not.toBeTruthy();
+            expect(studentsHandler.handleStudentId(null)).not.toBeTruthy();
         })
 
         test("empty strign id return false", () => {
-            expect(() => studentsHandler.handleStudentId('')).not.toBeTruthy();
+            expect(studentsHandler.handleStudentId('')).not.toBeTruthy();
         })
     })
 
@@ -68,15 +71,15 @@ describe("StudentsHandler", () => {
         })
 
         test("getRecentAssessment return correct totalScore", () => {
-            expect(() => student1RecentAssessment.rawScore).toBe(15)
+            expect(student1RecentAssessment.results.rawScore).toBe(15)
         })
 
         test("getRecentAssessment return correct algebra score", () => {
-            expect(() => student1RecentAssessment.strands['Number and Algebra']).toBe(5)
+            expect(student1RecentAssessment.strands['Number and Algebra'].correctNo).toBe(5)
         })
 
         test("getRecentAssessment return Geometry score", () => {
-            expect(() => student1RecentAssessment.strands['Measurement and Geometry']).toBe(7)
+            expect(student1RecentAssessment.strands['Measurement and Geometry'].correctNo).toBe(7)
         })
     })
 

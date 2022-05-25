@@ -1,4 +1,4 @@
-const ErrorHandler = require('../../src/handlers/error-handler')
+const ErrorHandler = require( "../../src/handlers/error-handler");
 
 describe("InputHandler", () => {
     const errorHandler = new ErrorHandler();
