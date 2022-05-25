@@ -1,4 +1,4 @@
-import QuestionsHandler from "../../src/handlers/questions-handler";
+const QuestionsHandler = require('../../src/handlers/questions-handler')
 
 describe("QuestionsHandler", () => {
     const questionsHandler = new QuestionsHandler();

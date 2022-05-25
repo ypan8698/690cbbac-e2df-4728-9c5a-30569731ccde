@@ -1,4 +1,4 @@
-import StudentsHandler from "../../src/handlers/students-handler";
+const StudentsHandler = require('../../src/handlers/students-handler')
 
 describe("StudentsHandler", () => {
     const studentsHandler = new StudentsHandler();

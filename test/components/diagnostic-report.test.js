@@ -1,4 +1,4 @@
-import DiagnosticReport from "../../src/components/diagnostic-report";
+const DiagnosticReport = require('../../src/components/diagnostic-report')
 
 describe("DiagnosticReport", () => {
     const diagnosticReport = new DiagnosticReport();

@@ -1,4 +1,4 @@
-import Report from '../../src/components/resport'
+const Report = require('../../src/components/resport')
 
 describe("Report", () => {
     

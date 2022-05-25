@@ -1,4 +1,4 @@
-import InputHandler from "../../src/handlers/input-handler";
+const InputHandler = require('../../src/handlers/input-handler')
 
 describe("InputHandler", () => {
     const inputHandler = new InputHandler();

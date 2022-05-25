@@ -1,4 +1,4 @@
-import FeedbackReport from "../../src/components/feedback"
+const FeedbackReport = require('../../src/components/feedback')
 
 describe("FeedbackReport", () => {
     const feedbackReport = new FeedbackReport();
