@@ -1,6 +1,6 @@
 # Reporting System
 
-This CLI application is built on Node.js which takes two user inputs - Student ID and Report to generate Diagnostic/ Progress/ Feedback reports accordingly.
+This CLI application is built on Node.js which takes in two user inputs - Student ID and Report to generate Diagnostic/ Progress/ Feedback reports accordingly.
 
 ## Version
 
