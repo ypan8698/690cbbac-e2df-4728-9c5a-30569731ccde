@@ -8,7 +8,7 @@ const studentResponses = require('../../sample-data/student-responses.json')
 const dateFormat = require('../utils/date');
 
 class StudentsHandler {
-    handleStudentId(studentId){
+  handleStudentId(studentId){
         if(studentId && studentId.length){
             if(studentId.length > 30){
                 errorHandler.warning("The given student Id is too long! Please double check!")
@@ -23,7 +23,7 @@ class StudentsHandler {
       return false 
     }
 
-    _validateId(studentId){
+  _validateId(studentId){
         if(students && students.length){
            for(const index in students){
                if(studentId === students[index].id){
@@ -38,7 +38,7 @@ class StudentsHandler {
         return false
     }
 
-    _getStudentNameById(studentId){
+  _getStudentNameById(studentId){
       if(students && students.length){
         for(const index in students){
           try{
@@ -53,7 +53,7 @@ class StudentsHandler {
         return ''
     }
 
-    _getAssessmentsNameById(id){
+  _getAssessmentsNameById(id){
       if(assessments && students.length){
         for(const index in assessments){
           try{
@@ -67,12 +67,37 @@ class StudentsHandler {
         return '' 
     }
   }
-
+  
+  /* This function takes in two inputs- studentId and getQuestionDetails. studentId variable is the student id in student.json file
+    getQuestionsDetails variable is a boolean value. When it equals to true, that means user wants to generate the Feedback report. Thus, we will call getQuestionDetails function to get question details.
+    when it equals to false, this function will prepare the data for Diagnostic report, otherwise, it's for Feedback report
+    the returned data when getQuestionDetails equals to false is the same format as the example below:
+    {
+      id: 'studentReponse3',
+      assessmentId: 'assessment1',
+      assigned: '14/12/2021 10:31:00',
+      started: '16/12/2021 10:00:00',
+      completed: '16/12/2021 10:46:00',
+      student: { id: 'student1', yearLevel: 5 },
+      responses: [
+        { questionId: 'numeracy1', response: 'option3' },
+        { questionId: 'numeracy2', response: 'option4' }
+      ],
+      results: { rawScore: 15, totalAttempts: 16 },
+      strands: {
+        'Number and Algebra': { totalNo: 5, correctNo: 5 },
+        'Measurement and Geometry': { totalNo: 7, correctNo: 7 },
+        'Statistics and Probability': { totalNo: 4, correctNo: 3 }
+      },
+      studentName: 'Tony Stark',
+      assessmentsName: 'Numeracy'
+    }
+  */
   getRecentAssessment(studentId, getQuestionDetails = false){
     try{
       if(studentResponses && studentResponses.length){
         let studentCompleteDate = ''
-        let recentCompleted = ''
+        let recentCompleted = null
         for (const index in studentResponses){
           try{
             if(studentResponses[index].student && studentResponses[index].student.id){
@@ -109,12 +134,37 @@ class StudentsHandler {
           return feedbackData 
         }
       }
-      return ''
+      return null
     }catch(error){
       errorHandler.error(error)
     }
   }
-
+  
+  /* This function takes in one input- studentId which is the student id in student.json file
+     This function aims to prepare the data for Progress Report
+     It will help calculate the total attempts the given student has completed based on the studentId,
+     The details for the each of the attempts, and summary of the progress
+     The returned data is the same format as the example below:
+     {
+      assessmentHistory: [
+        {
+          completeDate: '16/12/2019 10:46:00',
+          rawScore: 6,
+          totalAttempts: 16
+        },
+        {
+          completeDate: '16/12/2020 10:46:00',
+          rawScore: 10,
+          totalAttempts: 16
+        }
+      ],
+      completedCount: 2,
+      firstAttemptScore: 6,
+      lastAttemptScore: 10,
+      assessmentsName: 'Numeracy',
+      studentName: 'Tony Stark'
+     }
+  */
   getHistoryDataById(studentId){
     try{
       if(studentResponses && studentResponses.length){
@@ -167,7 +217,7 @@ class StudentsHandler {
     }catch(error){
       errorHandler.error(error)
     }
-    return ''
+    return null
   }
 }
 

@@ -53,6 +53,7 @@ class InputHandler {
                     feedbackReport.generateReport(data)
                 break
                 default:
+                    diagnosticReport.generateReport(data)
               }
             return true
         }

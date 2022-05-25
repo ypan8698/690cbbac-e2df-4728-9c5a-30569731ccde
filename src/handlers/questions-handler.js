@@ -3,6 +3,16 @@ const errorHandler= new ErrorHandler();
 const questions = require('../../sample-data/questions.json') 
 
 class QuestionsHandler {
+    /* This function takes in two inputs- assessment and getQuestionsDetails. assessment variable is a JSON object which is in the same format as the object in question,json file
+    getQuestionsDetails variable is a boolean value. When it equals to true, that means user wants to generate the Feedback report. Thus, we will call getQuestionDetails function to get question details.
+    when it equals to false, this function will prepare the data for Diagnostic report
+    in order to generate and return a JSON object as the example below
+    {
+        'Number and Algebra': { totalNo: 5, correctNo: 5 },
+        'Measurement and Geometry': { totalNo: 7, correctNo: 7 },
+        'Statistics and Probability': { totalNo: 1, correctNo: 1 }
+    }
+    */
     handleStrands(assessment, getQuestionsDetails = false){
         let questionsDetailsArray= []
         if(questions && questions.length){
@@ -41,7 +51,19 @@ class QuestionsHandler {
             return !getQuestionsDetails ? strands : questionsDetailsArray
         }
     }
-
+    
+    /* This function takes in two inputs- queston and response. question variable is a JSON object which is in the same format as the object in question,json file
+       response variable is the student response id in student-responses.json
+       what this function does is to generate and return a JSON object as the example below
+       {
+            question: "What is the 'median' of the following group of numbers 5, 21, 7, 18, 9?",
+            hint: 'You must first arrange the numbers in ascending order. The median is the middle term, which in this case is 9',
+            yourAnswer: '7',
+            wrongLabel: 'A',
+            rightAnswer: '9',
+            rightLabel: 'B'
+        }
+    */
     getQuestionDetails(question, response){
         try{
             let questiondetails = {}

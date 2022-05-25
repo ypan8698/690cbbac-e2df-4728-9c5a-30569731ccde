@@ -37,14 +37,14 @@
       }
     }
     
-      _getHistoryDataById(data){
+    _getHistoryDataById(data){
         const results = studentsHandler.getHistoryDataById(data)
         return results
     }
 
     dateFormat(date){
         let newDate = dateFormat(date)
-        newDate = moment(newDate).format('Do MMM YYYY')
+        newDate = moment(newDate).format('Do MMM YYYY') // reformat the date as 16th Dec 2019 without showing the time
         return newDate
     }
     
